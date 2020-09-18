@@ -1,3 +1,16 @@
 .orange {
     color: orange;
 }
+
+.purple {
+    color: rebeccapurple;
+}
+
+#rate-container {
+    border-top: 2px solid purple;
+}
+
+#rate-container fa-icon {
+    cursor: pointer;
+    font-size: 2em;
+}

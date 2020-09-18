@@ -1,11 +1,13 @@
 .app {
-    background-color: #282c34;
+    background-color:#2D2D2A;
     color: white;
     min-height: calc(100vh - 100px);
     padding: 50px;
     margin: 0;
 }
 
-h1{
-    text-align: center;
+.title{
+    text-align: center; 
+    color: #FCCA46;
+    font-size: 1.75rem;
 }

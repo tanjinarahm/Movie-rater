@@ -1,0 +1,22 @@
+.movie-item{
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    width: 200px;
+}
+
+h3{
+    cursor: pointer;
+}
+.movie-item fa-icon{
+    font-size: 1.5em;
+    margin: 15px 5px;
+    cursor: pointer;
+}
+
+.trash {
+    color: crimson;
+}
+
+.edit {
+    color: grey;
+}
