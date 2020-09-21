@@ -31,9 +31,10 @@ export class MovieDetailsComponent implements OnInit {
 
   rateClicked(rate: number) {
     this.apiService.rateMovie(rate, this.movie.id).subscribe(
-      result => this.getDetails(),
-      error => console.log(error)
-    );
+      result => {
+        this.getDetails(),
+        error => console.log(error)
+      });
   }
 
   getDetails() {

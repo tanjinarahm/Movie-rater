@@ -17,10 +17,10 @@ export class MovieListComponent implements OnInit {
   faPlus = faPlus;
 
   @Input() movies: Movie[] = [];
-  @Output() selectMovie  = new EventEmitter<Movie>();
-  @Output() editedMovie  = new EventEmitter<Movie>();
-  @Output() createNewMovie  = new EventEmitter();
-  @Output() deletedMovie  = new EventEmitter<Movie>();
+  @Output() public selectMovie  = new EventEmitter<Movie>();
+  @Output() public editedMovie  = new EventEmitter<Movie>();
+  @Output() public createNewMovie  = new EventEmitter();
+  @Output() public deletedMovie  = new EventEmitter<Movie>();
 
   constructor() { }
 

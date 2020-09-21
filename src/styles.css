@@ -1,8 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+/* font-family: 'Nunito', sans-serif; */
 
-body {
+/* 
+* {
     margin: 0;
     padding: 0;
-    /* font-family: 'Nunito', sans-serif; */
     font-family: 'PT Sans', sans-serif;
 }
+
+body {
+    background-color: #222222;
+} */
+
+/* button {
+    background-color: #FE7F2D; 
+    margin-top: 10px;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 2px;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+textarea {
+    font-family: 'Nunito', 'sans-serif';
+}
+
+button:disabled {
+    color: #FE7F2D;
+    background-color: #444444; 
+    cursor: not-allowed;
+}
+
+input, textarea{
+    width: 100%;
+    font-size: 1em;
+    margin: 8px 0px;
+    padding: 10px;
+} */

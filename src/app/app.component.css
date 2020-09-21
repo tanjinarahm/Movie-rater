@@ -1,4 +1,4 @@
-.app {
+/* .app {
     background-color:#2D2D2A;
     color: white;
     min-height: calc(100vh - 100px);
@@ -11,3 +11,10 @@
     color: #FCCA46;
     font-size: 1.75rem;
 }
+
+.film{
+    color: white;
+    display: inline-block;
+    transform: rotate(30deg);
+    margin-right: -.2rem;
+} */
