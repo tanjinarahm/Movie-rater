@@ -1,28 +1,34 @@
-<form [formGroup]="authForm" (submit)="saveForm()"> 
+
+<section class="formSection">
+    <form [formGroup]="authForm" (submit)="saveForm()"> 
+
+        <div>
+            <label for="">Username</label>
+            <input type="text" formControlName="username">
+            <span *ngIf="authForm.get('username').dirty && authForm.get('username').hasError('required')" class="form-error"> Username is required</span>
+            <span *ngIf="authForm.get('username').dirty && authForm.get('username').hasError('minlength')" class="form-error"> Username must be at least 3 characters</span>
+        </div>
     
-    <div>
-        <label for="">Username</label>
-        <input type="text" formControlName="username">
-        <span></span>
-    </div>
-
-    <div>
-        <label for="">Password</label>
-        <input type="password" rows="10" formControlName="password">
-        <span></span>
-    </div>
-
-    <div *ngIf="registerMode">
-        <label for=""> Confirm Password</label>
-        <input type="password" rows="10" formControlName="confirmPassword">
-        <span></span>
-    </div>
-
-    <button type="submit">
-        <span *ngIf="!registerMode">Login</span>
-        <span *ngIf="registerMode">Register</span>
-    </button>
-</form>
-
-<span *ngIf="!registerMode" (click)="registerMode = true"> Don't have an account? <a>Register here.</a></span>
-<span *ngIf="registerMode" (click)="registerMode = false"> Already have an account? <a>Login here.</a></span>
+        <div>
+            <label for="">Password</label>
+            <input type="password" formControlName="password">
+            <span *ngIf="authForm.get('password').dirty && authForm.get('password').hasError('required')" class="form-error"> Password is required</span>
+            <span *ngIf="authForm.get('password').dirty && authForm.get('password').hasError('minlength')" class="form-error"> Password must be at least 8 characters</span>
+        </div>
+    
+        <div *ngIf="registerMode">
+            <label for=""> Confirm Password</label>
+            <input type="password" formControlName="confirmPassword">
+            <span *ngIf="authForm.get('confirmPassword').dirty && authForm.get('confirmPassword').hasError('mustMatch')" class="form-error">Passwords must match</span>
+            <span *ngIf="authForm.get('confirmPassword').touched && authForm.get('confirmPassword').hasError('mustMatch')" class="form-error"> Passwords must match</span>
+        </div>
+    
+        <button type="submit">
+            <span *ngIf="!registerMode">Login</span>
+            <span *ngIf="registerMode">Register</span>
+        </button>
+    </form>
+    
+    <span *ngIf="!registerMode" (click)="initForm()"> Don't have an account? <span class="blue">Register here.</span></span>
+    <span *ngIf="registerMode" (click)="initForm()"> Already have an account? <span class="blue">Login here.</span></span>
+</section>

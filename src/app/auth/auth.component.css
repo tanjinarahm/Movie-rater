@@ -1,0 +1,17 @@
+.formSection {
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.blue {
+    color: #0093A7;
+    cursor: pointer;
+}
+
+.blue:hover {
+    text-decoration: underline;
+}

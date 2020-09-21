@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../api.service'
 import { CookieService } from 'ngx-cookie-service';
+import { MustMatch } from '../_helpers/must-match.validator'
 // import { faTheRedYeti } from '@fortawesome/free-brands-svg-icons';
 import { Router } from '@angular/router';
 
@@ -16,17 +17,20 @@ interface TokenObj {
 })
 export class AuthComponent implements OnInit {
 
-  authForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl('')
-  });
+  // authForm = new FormGroup({
+  //   username: new FormControl(''),
+  //   password: new FormControl(''),
+  //   confirmPassword: new FormControl('')
+  // });
 
-  registerMode = false;
+  public registerMode: boolean = true;
+  public authForm: FormGroup;
 
   constructor(
     private apiService: ApiService,
     private cookieService: CookieService,
-    private router: Router
+    private router: Router,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +39,35 @@ export class AuthComponent implements OnInit {
     if(mrToken) {
       this.router.navigate(['/movies'])
     }
+
+    this.initForm();
+  }
+
+  initializeRegisterForm(): void {
+    this.authForm = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ['', Validators.required]
+    }, {
+      validator: MustMatch('password', 'confirmPassword')
+    });
+  }
+
+  initializeLoginForm(): void {
+    this.authForm = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', [Validators.required, Validators.minLength(8)]]
+    });
+  }
+
+  initForm(): void {
+    this.registerMode = !this.registerMode;
+    if (this.registerMode){
+      this.initializeRegisterForm();
+    } else {
+      this.initializeLoginForm();
+    }
+    console.log(this.authForm)
   }
 
   saveForm(){
