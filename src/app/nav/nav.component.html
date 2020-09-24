@@ -1,0 +1,20 @@
+<nav>
+    <h1 class="logo"[ngClass] ="{'logo-active' : !isClosed}" > Movie Rater </h1>
+
+    <div class="burger" (click)="activateMenu()" [ngClass] ="{'burger-active' : !isClosed}">
+        <div class="line line1"></div>
+        <div class="line line2"></div>
+        <div class="line line3"></div>
+    </div>
+
+    <ul [ngClass]="!isClosed ? 'active' : 'not-active'">
+        <div class="links">
+            <!-- <li (click)="isClosed = true" routerLink="home"><a>Home</a></li> -->
+            <li (click)="isClosed = true" routerLink="movies"><a>All Movies</a></li>
+            <li (click)="isClosed = true" ><a>Highest Rated</a></li>
+            <li (click)="isClosed = true" ><a>Recent</a></li>
+            <li (click)="isClosed = true" *ngIf="isLoggedIn" (click)=logout()><a>Log out</a></li>
+            <li (click)="isClosed = true" routerLink="auth" *ngIf="!isLoggedIn"><a>Log in</a></li>
+        </div>
+    </ul>
+</nav>

@@ -27,9 +27,15 @@ export class ApiService {
   ) { }
 
   getMovies() {
-    return this.httpClient.get<Movie[]>(this.baseMovieUrl, {headers: this.getAuthHeaders()});
+    return this.httpClient.get<Movie[]>(this.baseMovieUrl, {headers: this.headers});
     // console.log(dynamicMovies)
     // return this.movies;
+  }
+  
+
+  //get authorized movies
+  getAuthMovies() {
+    return this.httpClient.get<Movie[]>(this.baseMovieUrl, {headers: this.getAuthHeaders()});
   }
 
   getMovie(id: number) {
@@ -55,6 +61,7 @@ export class ApiService {
 
   loginUser(authData) {
     const body = JSON.stringify(authData);
+    // console.log('');
     return this.httpClient.post(`${this.baseUrl}auth/`, body, {headers: this.getAuthHeaders()});
   }
 

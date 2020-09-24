@@ -1,0 +1,32 @@
+.home {
+    /* padding: 2rem; */
+    padding: 0 2rem;
+    height: 65vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero {
+    margin-bottom: 1rem;
+}
+
+.hero h1{
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.hero p{
+    color: var(--grey)
+}
+
+button {
+    margin-bottom: 0.5rem;
+}
+
+.login{
+    color: var(--blue);
+}

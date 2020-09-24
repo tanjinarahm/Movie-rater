@@ -11,9 +11,13 @@ import { MainComponent } from './main.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { MovieFormComponent } from './movie-form/movie-form.component';
+import { HomeComponent } from './home/home.component';
+import { AuthComponent } from '../auth/auth.component';
 
 const routes: Routes = [
-  {path:'movies', component: MainComponent}
+  {path: 'home', component: HomeComponent},
+  {path:'movies', component: MainComponent},
+  {path: 'auth', component: AuthComponent}
 ];
 
 @NgModule({
@@ -21,7 +25,8 @@ const routes: Routes = [
     MainComponent,
     MovieListComponent,
     MovieDetailsComponent,
-    MovieFormComponent
+    MovieFormComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

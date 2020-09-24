@@ -5,6 +5,7 @@
     align-items: center; */
     max-width: 640px;
     margin: 0 auto;
+    margin-top: 2.5rem;
 }
 
 .blue {
@@ -14,4 +15,34 @@
 
 .blue:hover {
     text-decoration: underline;
+}
+
+.form-error {
+    display: inline-block;
+    color: #F15152;
+    margin: .5rem 0;
+}
+
+.guest{
+    margin-top: .25rem;
+    display: block;
+    color: #0093A7;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.guest:hover {
+    text-decoration: none;
+}
+input.ng-dirty.ng-invalid {
+    border-color: #F15152;
+}
+
+
+.all-error{
+    color: var(--light);
+    padding: .75rem;
+    width: 95%;
+    border-radius: 3px;
+    background-color: #F15152;
 }

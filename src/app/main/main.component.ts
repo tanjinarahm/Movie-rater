@@ -13,9 +13,11 @@ import { Router } from '@angular/router';
 })
 export class MainComponent implements OnInit {
 
-  movies: Movie[] = [];
-  selectedMovie: Movie = null;
-  editedMovie: Movie = null;
+  public movies: Movie[] = [];
+  public selectedMovie: Movie = null;
+  public editedMovie: Movie = null;
+  public home: boolean = true;
+  public isLoggedIn: boolean = false;
 
   constructor(
     private apiService: ApiService,
@@ -27,33 +29,54 @@ export class MainComponent implements OnInit {
     const mrToken = this.cookieService.get('mr-token');
     console.log(mrToken);
     if(!mrToken) {
-      this.router.navigate(['/auth'])
+      // this.router.navigate(['/auth'])
+      this.getAllMovies();
     } else {
-        this.apiService.getMovies().subscribe(
-          (data: Movie[]) => {
-            this.movies = data;
-          },
-          error => console.log(error)
-        );
+      this.getAuthMovies();
+      this.isLoggedIn = true;
+        // this.apiService.getMovies().subscribe(
+        //   (data: Movie[]) => {
+        //     this.movies = data;
+        //   },
+        //   error => console.log(error)
+        // );
     }
   }
 
+  getAllMovies() {
+    let observable = this.apiService.getMovies();
+    observable.subscribe((data: Movie[]) => {
+      this.movies = data;
+    });
+  }
+
+  //
+  getAuthMovies() {
+    let observable = this.apiService.getAuthMovies();
+    observable.subscribe((data: Movie[]) => {
+      this.movies = data;
+    });
+  }
+
   selectMovie(movie: Movie){
+    this.editedMovie = null;
     this.selectedMovie = movie;
+    this.home = false;
     this.movieUpdated(movie);
-    // this.editedMovie = null;
     // console.log('selectedMovie', this.selectedMovie)
   }
 
   editMovie(movie: Movie){
-    this.editedMovie = movie;
     this.selectedMovie = null;
+    this.home = false;
+    this.editedMovie = movie;
     // console.log('selectedMovie', this.selectedMovie)
   }
 
   createNewMovie(){
-    this.editedMovie = {id: null, title: '', description: '', avg_rating: null, no_of_ratings: null};
     this.selectedMovie = null;
+    this.home = null;
+    this.editedMovie = {id: null, title: '', description: '', avg_rating: null, no_of_ratings: null};
   }
 
   deletedMovie(movie: Movie) {
@@ -82,10 +105,10 @@ export class MainComponent implements OnInit {
 
   }
 
-  logout() {
-    this.cookieService.delete('mr-token');
-    this.router.navigate(['/auth'])
-  }
+  // logout() {
+  //   this.cookieService.delete('mr-token');
+  //   this.router.navigate(['/auth'])
+  // }
 
 }
  

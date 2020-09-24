@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '../../api.service'
 import { Movie } from '../../models/Movie'
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,6 +19,8 @@ export class MovieDetailsComponent implements OnInit {
   rateHovered = 0;
 
   faStar = faStar;
+  cookieService: CookieService;
+  router: Router;
 
   constructor(
     private apiService: ApiService
@@ -47,4 +51,10 @@ export class MovieDetailsComponent implements OnInit {
     );
   }
   
+
+  // logout() {
+
+  //   this.cookieService.delete('mr-token');
+  //   this.router.navigate(['/auth'])
+  // }
 }

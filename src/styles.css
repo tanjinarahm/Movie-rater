@@ -1,17 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 /* font-family: 'Nunito', sans-serif; */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
-
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap');
 
 :root {
-    --main-bg: #2A2C24;
-    --light-bg: #33352d;
+    --main-bg: #222222;
+    --light-bg: #303030;
     --secondary: #51daa3;
     /* #53DD6C #63A088*/
+    --disabled:  #e0a5589d;
+    /* --hover: #31bb84; */
     --light: #F5F1ED;
-    --title: #E0A458;
+    --accent: #E0A458;
+    --hover:  #ca9249;
+    --blue: #0093a7;
+    --grey: #b4b4b4b4;
 }
 
 * {
@@ -26,25 +29,42 @@ body {
 }
 
 button {
-    padding: 10px 20px;
+    padding: 1em 2em;
+    font-size: 1rem;
     color: var(--main-bg);
-    background: var(--secondary);
+    background: var(--accent);
     border: none;
+    border-radius: 4px;
     outline: none;
-    font-weight: bolder;
+    font-weight: 600;
     cursor: pointer;
+    transition: all 250ms ease-in-out;
+    /* width: 100%; */
 }
 
 
-form{
-    width: 100%;
+button:hover, 
+button:focus {
+    background: var(--hover);
 }
-
-form div {
-    margin-bottom: 1rem;
+button:disabled {
+    cursor: not-allowed;
+    background: var(--disabled);
 }
 
 form button {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+
+
+form{
+    width: 90%;
+    margin: 0 auto;
+}
+
+form div {
     margin-bottom: 1rem;
 }
 
@@ -53,20 +73,24 @@ label {
     margin-bottom: .5rem;
 }
 
-input {
+input, textarea {
     width: 100%;
     padding: .75rem;
     box-sizing: border-box;
     outline: none;
     border: 1px solid transparent;
+    border-radius: 3px;
     background: var(--light-bg);
     color: var(--light);
     transition: all 250ms ease-in-out;
 }
 
-input:focus{
-    border-color: var(--secondary);
+input:focus, 
+textarea:focus{
+    border-color: var(--accent);
 }
+
+
 
 /* button {
     background-color: #FE7F2D; 

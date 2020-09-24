@@ -9,16 +9,18 @@ import { MainModule } from './main/main.module';
 
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NavComponent } from './nav/nav.component';
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'auth'}
+  {path: '', pathMatch: 'full', redirectTo: 'movies'}
 ];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
     FontAwesomeModule,
-    FontAwesomeModule
   ],
   exports: [
     RouterModule

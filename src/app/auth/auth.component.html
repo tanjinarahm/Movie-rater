@@ -1,7 +1,9 @@
 
 <section class="formSection">
     <form [formGroup]="authForm" (submit)="saveForm()"> 
-
+       <!-- <fa-icon [icon]="faExclamationCircle" > </fa-icon>  -->
+       <p class="loginError" *ngIf="registerError" class="form-error all-error"> {{registerError}}</p>
+        <p class="loginError" *ngIf="loginError" class="form-error all-error"> {{loginError}}</p>
         <div>
             <label for="">Username</label>
             <input type="text" formControlName="username">
@@ -20,15 +22,16 @@
             <label for=""> Confirm Password</label>
             <input type="password" formControlName="confirmPassword">
             <span *ngIf="authForm.get('confirmPassword').dirty && authForm.get('confirmPassword').hasError('mustMatch')" class="form-error">Passwords must match</span>
-            <span *ngIf="authForm.get('confirmPassword').touched && authForm.get('confirmPassword').hasError('mustMatch')" class="form-error"> Passwords must match</span>
         </div>
     
-        <button type="submit">
+        <button type="submit" [disabled]="!authForm.valid">
             <span *ngIf="!registerMode">Login</span>
             <span *ngIf="registerMode">Register</span>
         </button>
+        
+        <span *ngIf="!registerMode" (click)="initForm()"> Don't have an account? <span class="blue">Register here.</span></span>
+        <span *ngIf="registerMode" (click)="initForm()"> Already have an account? <span class="blue">Login here.</span></span>
+        <span routerLink="../movies" class ="guest">Continue as a guest</span>
     </form>
     
-    <span *ngIf="!registerMode" (click)="initForm()"> Don't have an account? <span class="blue">Register here.</span></span>
-    <span *ngIf="registerMode" (click)="initForm()"> Already have an account? <span class="blue">Login here.</span></span>
 </section>
