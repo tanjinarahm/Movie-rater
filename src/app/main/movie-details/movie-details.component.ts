@@ -14,7 +14,12 @@ import { Router } from '@angular/router';
 export class MovieDetailsComponent implements OnInit {
 
   @Input() movie: Movie;
+  @Input() public isLoggedIn : boolean;
   @Output() updateMovie = new EventEmitter<Movie>();
+  @Output() public selectMovie  = new EventEmitter<Movie>();
+  @Output() public editedMovie  = new EventEmitter<Movie>();
+  @Output() public createNewMovie  = new EventEmitter();
+  @Output() public deletedMovie  = new EventEmitter<Movie>();
 
   rateHovered = 0;
 
@@ -27,19 +32,23 @@ export class MovieDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('is logged in? ', this.isLoggedIn)
   }
 
   rateHover(rate: number) {
     this.rateHovered = rate;
+    console.log("trying to rate");
   }
 
   rateClicked(rate: number) {
+    console.log("rate it")
     this.apiService.rateMovie(rate, this.movie.id).subscribe(
       result => {
         this.getDetails(),
         error => console.log(error)
       });
   }
+  
 
   getDetails() {
     this.apiService.getMovie(this.movie.id).subscribe(
@@ -52,9 +61,30 @@ export class MovieDetailsComponent implements OnInit {
   }
   
 
-  // logout() {
+  logout() {
 
-  //   this.cookieService.delete('mr-token');
-  //   this.router.navigate(['/auth'])
+    this.cookieService.delete('mr-token');
+    this.router.navigate(['/auth'])
+  }
+
+
+  // movieClicked(movie: Movie) {
+  //   console.log('Selected movie', movie);
+
+  //   this.selectMovie.emit(movie);
   // }
+
+  editMovie(){
+    console.log('Movie to edit', this.movie);
+    this.editedMovie.emit(this.movie);
+  }
+
+  newMovie(){
+    this.createNewMovie.emit();
+  }
+  deleteMovie(){
+    if(confirm("Are you sure you want to delete " + this.movie.title + "?")) {
+      this.deletedMovie.emit(this.movie);
+    }
+  }
 }

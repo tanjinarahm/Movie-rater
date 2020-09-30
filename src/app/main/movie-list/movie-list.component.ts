@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Movie } from '../../models/Movie'
-import { ApiService } from '../../api.service'
+// import { faTrash } from '@fortawesome/free-solid-svg-icons';
+// import { faPlus } from '@fortawesome/free-solid-svg-icons';
+// import { ApiService } from '../../api.service'
 
 @Component({
   selector: 'app-movie-list',
@@ -12,9 +12,9 @@ import { ApiService } from '../../api.service'
 })
 export class MovieListComponent implements OnInit {
 
-  faEdit = faEdit;
-  faTrash = faTrash;
-  faPlus = faPlus;
+  faStar = faStar;
+  // faTrash = faTrash;
+  // faPlus = faPlus;
 
   @Input() movies: Movie[] = [];
   @Output() public selectMovie  = new EventEmitter<Movie>();
@@ -43,4 +43,6 @@ export class MovieListComponent implements OnInit {
   deleteMovie(movie: Movie){
     this.deletedMovie.emit(movie);
   }
+
+
 }

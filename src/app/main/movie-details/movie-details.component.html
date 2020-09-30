@@ -18,32 +18,58 @@
 
 </div> -->
 
-
 <!-- <button (click)="logout()">Logout</button> -->
-<div class="movie-details" *ngIf="movie">
-    <h1>{{ movie.title }}</h1>
-    <div class="stars">
-        {{ movie.avg_rating.toFixed(1) }}
-        <fa-icon [icon]="faStar" [ngClass]="{'blue': movie.avg_rating > 0}"></fa-icon> 
-        <fa-icon [icon]="faStar" [ngClass]="{'blue': movie.avg_rating > 1}"></fa-icon> 
-        <fa-icon [icon]="faStar" [ngClass]="{'blue': movie.avg_rating > 2}"></fa-icon> 
-        <fa-icon [icon]="faStar" [ngClass]="{'blue': movie.avg_rating > 3}"></fa-icon> 
-        <fa-icon [icon]="faStar" [ngClass]="{'blue': movie.avg_rating > 4}"></fa-icon> 
-        ({{ movie.no_of_ratings }})
+<div id="movie-details" *ngIf="movie">
+
+    <div class="add-movie" *ngIf="!isLoggedIn">
+        <h1>Add Movie</h1>
+        <button (click)="newMovie()">+</button>
     </div>
 
-    <p>{{ movie.description }}</p>
 
-    <div id="rate-container">
-        <h2>Rate it!</h2>
-        <fa-icon *ngFor="let rating of [1,2,3,4,5]" 
-                 [icon]="faStar" 
-                 (mouseenter)="rateHover(rate)" 
-                 (mouseleave)="rateHovered = 0"
-                 (click)="rateClicked(rate)"
-                 [ngClass]="{'orange': rateHovered >= rate}" 
-                 >
-        </fa-icon> 
+
+    <div class="movie-card">
+        <div class="detail-container">
+            <h1 class="movie-title">{{ movie.title }}</h1>
+            <div class="stars">
+                {{ movie.avg_rating.toFixed(1) }}
+                <fa-icon [icon]="faStar" [ngClass]="{'orange': movie.avg_rating > 0}"></fa-icon> 
+                <fa-icon [icon]="faStar" [ngClass]="{'orange': movie.avg_rating > 1}"></fa-icon> 
+                <fa-icon [icon]="faStar" [ngClass]="{'orange': movie.avg_rating > 2}"></fa-icon> 
+                <fa-icon [icon]="faStar" [ngClass]="{'orange': movie.avg_rating > 3}"></fa-icon> 
+                <fa-icon [icon]="faStar" [ngClass]="{'orange': movie.avg_rating > 4}"></fa-icon> 
+                ({{ movie.no_of_ratings }})
+            </div>
+        
+            <p class="movie-description">{{ movie.description }}</p>
+
+            
+        </div>
+    
+        <!-- <div id="rate-container">
+            <h2>Rate it!</h2>
+            <fa-icon *ngFor="let rating of [1,2,3,4,5]" 
+                     [icon]="faStar" 
+                     (mouseenter)="rateHover(rate)" 
+                     (mouseleave)="rateHovered = 0"
+                     (click)="rateClicked(rate)"
+                     [ngClass]="{'orange': rateHovered >= rate}" 
+                     >
+            </fa-icon> 
+        </div> -->
+
+
+    <div class="rate-container">
+        <div class="buttons"  *ngIf="!isLoggedIn">
+            <button class="delete" (click)="deleteMovie()">Delete</button>
+            <button class="edit" (click)="editMovie()">Edit</button>
+        </div>
+
+        <div class="star-rater"> 
+            <h2 class="rate-title"> Rate it! </h2>
+            <fa-icon *ngFor="let rate of [1,2,3,4,5]" [icon]="faStar" (mouseenter)="rateHover(rate)" (mouseleave)="rateHovered = 0" (click)= "rateClicked(rate)" [ngClass]=" { 'orange': rateHovered >= rate }"></fa-icon>
+        </div>
+    </div>
     </div>
 
 </div>

@@ -1,16 +1,17 @@
 <!-- <p> Movie: {{movie.title}}</p> -->
-
-<form [formGroup]="movieForm" (submit)="saveForm()"> 
-    <label for="">Title</label>
-    <input type="text" formControlName="title">
-
-    <label for="">Description</label>
-    <textarea type="text" rows="10" formControlName="description"></textarea>
-
-    <button type="submit" [disabled]="formDisabled()">
-        <span *ngIf="id">Update</span>
-        <span *ngIf="!id">Create</span>
-    </button>
-</form>
+<div class="movie-form">
+    <form [formGroup]="movieForm" (submit)="saveForm()"> 
+        <label for="">Title</label>
+        <input type="text" formControlName="title">
+    
+        <label for="">Description</label>
+        <textarea type="text" rows="10" formControlName="description"></textarea>
+    
+        <button type="submit" [disabled]="formDisabled()">
+            <span *ngIf="id">Update</span>
+            <span *ngIf="!id">Create</span>
+        </button>
+    </form>
+</div>
 
 

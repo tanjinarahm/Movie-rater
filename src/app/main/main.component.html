@@ -7,13 +7,16 @@
     
     <div>
         <app-home *ngIf="home" [movie]="selectedMovie" [isLoggedIn] ="isLoggedIn"></app-home>
-        <app-movie-details [movie] ="this.selectedMovie" (updateMovie)="selectMovie($event)"> </app-movie-details>
+        <app-movie-details *ngIf="selectedMovie" [movie] ="selectedMovie" (updateMovie)="selectMovie($event)"         (editedMovie)="editMovie($event)"
+        (createNewMovie) ="createNewMovie()" 
+        (deletedMovie)="deletedMovie($event)"> </app-movie-details>
         <app-movie-form *ngIf="editedMovie" [movie]="this.editedMovie" (movieCreated)="movieCreated($event)" (movieUpdated)="movieUpdated($event)"></app-movie-form>
     </div>
     <app-movie-list [movies]="movies" 
         (selectMovie)="selectMovie($event)" 
         (editedMovie)="editMovie($event)"
         (createNewMovie) ="createNewMovie()" 
-        (deletedMovie)="deletedMovie($event)"> 
+        (deletedMovie)="deletedMovie($event)">
     </app-movie-list>
+    
 </main>
